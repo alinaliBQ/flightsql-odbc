@@ -113,12 +113,15 @@ else()
   )
 endif()
 
-set(ARROW_GIT_REPOSITORY "https://github.com/apache/arrow.git" CACHE STRING "Arrow repository path or URL")
+message("-AL- DEBUG: ARROW_GIT_REPOSITORY: ${ARROW_GIT_REPOSITORY} ")
+#-AL- somehow, if I use ARROW_GIT_REPOSITORY variable directly, then I get empty string... don't know why.
+set(ARROW_GIT_REPOSITORY1 "https://github.com/apache/arrow.git" CACHE STRING "Arrow repository path or URL")
 set(ARROW_GIT_TAG "b050bd0d31db6412256cec3362c0d57c9732e1f2" CACHE STRING "Tag for the Arrow repository")
 
-message("Using Arrow from ${ARROW_GIT_REPOSITORY} on tag ${ARROW_GIT_TAG}")
-ExternalProject_Add(ApacheArrow
-  GIT_REPOSITORY ${ARROW_GIT_REPOSITORY}
+message("Using Arrow from ${ARROW_GIT_REPOSITORY1} on tag ${ARROW_GIT_TAG}")
+ExternalProject_Add(
+  ApacheArrow
+  GIT_REPOSITORY ${ARROW_GIT_REPOSITORY1}
   GIT_TAG ${ARROW_GIT_TAG}
   CMAKE_ARGS ${ARROW_CMAKE_ARGS})
 
